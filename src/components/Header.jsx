@@ -51,7 +51,7 @@ class Header extends Component {
 
           {/* Right Buttons */}
           <div className="hidden md:flex space-x-4">
-          <a href="/my_website/signin" className="border border-indigo-600 text-sm md:text-base text-indigo-600 py-1 px-4 rounded-full shadow hover:bg-indigo-600 hover:text-white">Sign In</a>
+            <a href="#" className="border border-indigo-600 text-sm md:text-base text-indigo-600 py-1 px-4 rounded-full shadow hover:bg-indigo-600 hover:text-white">Sign In</a>
             <a href="#" className="border border-indigo-600 text-sm md:text-base text-indigo-600 py-1 px-4 rounded-full shadow hover:bg-indigo-600 hover:text-white">Sign Up</a>
           </div>
 
