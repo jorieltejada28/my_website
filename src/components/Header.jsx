@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   constructor(props) {
@@ -6,8 +7,6 @@ class Header extends Component {
     this.state = {
       isOpen: false,
     };
-    this.handleScroll = this.handleScroll.bind(this);
-    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   componentDidMount() {
@@ -18,18 +17,18 @@ class Header extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleScroll() {
+  handleScroll = () => {
     const header = document.querySelector("header");
     if (window.scrollY > 50) {
       header.classList.add("bg-indigo-600", "bg-opacity-75");
     } else {
       header.classList.remove("bg-indigo-600", "bg-opacity-75");
     }
-  }
+  };
 
-  toggleMenu() {
+  toggleMenu = () => {
     this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
-  }
+  };
 
   render() {
     return (
@@ -51,7 +50,7 @@ class Header extends Component {
 
           {/* Right Buttons */}
           <div className="hidden md:flex space-x-4">
-            <a href="#" className="border border-indigo-600 text-sm md:text-base text-indigo-600 py-1 px-4 rounded-full shadow hover:bg-indigo-600 hover:text-white">Sign In</a>
+            <Link to="/sign-in" className="border border-indigo-600 text-sm md:text-base text-indigo-600 py-1 px-4 rounded-full shadow hover:bg-indigo-600 hover:text-white">Sign In</Link>
             <a href="#" className="border border-indigo-600 text-sm md:text-base text-indigo-600 py-1 px-4 rounded-full shadow hover:bg-indigo-600 hover:text-white">Sign Up</a>
           </div>
 
@@ -69,7 +68,7 @@ class Header extends Component {
             <li><a href="#features" className="hover:text-indigo-600">Features</a></li>
             <li><a href="#about" className="hover:text-indigo-600">About</a></li>
             <li><a href="#contact" className="hover:text-indigo-600">Contact</a></li>
-            <li><a href="#" className="border border-indigo-600 text-indigo-600 py-2 px-4 shadow hover:bg-indigo-600 hover:text-white block">Sign In</a></li>
+            <li><Link to="/sign-in" className="border border-indigo-600 text-indigo-600 py-2 px-4 shadow hover:bg-indigo-600 hover:text-white block">Sign In</Link></li>
             <li><a href="#" className="border border-indigo-600 text-indigo-600 py-2 px-4 shadow hover:bg-indigo-600 hover:text-white block">Sign Up</a></li>
           </ul>
         </div>

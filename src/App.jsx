@@ -7,6 +7,7 @@ import featureOneImage from "./images/featureone.png";
 import featureTwoImage from "./images/featuretwo.png";
 import featureThreeImage from "./images/featurethree.png";
 import SignIn from "./pages/SignIn";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 // Base Component Class
 class App extends Component {
@@ -32,14 +33,26 @@ class App extends Component {
     }
 
     return (
-      <div className="bg-gray-50 text-gray-800 min-h-screen font-sans">
-        <Header />
-        <HeroSection />
-        <FeaturesSection />
-        <AboutSection />
-        <ContactSection />
-        <Footer />
-      </div>
+      <Router basename="/my_website">
+        <div className="bg-gray-50 text-gray-800 min-h-screen font-sans">
+          {/* Conditionally render Header and Footer */}
+          <Routes>
+            <Route path="/sign-in" element={<SignIn />}
+            />
+            <Route path="/" element={
+              <>
+                <Header />
+                <HeroSection />
+                <FeaturesSection />
+                <AboutSection />
+                <ContactSection />
+                <Footer />
+              </>
+            }
+            />
+          </Routes>
+        </div>
+      </Router>
     );
   }
 }
@@ -127,7 +140,15 @@ class AboutSection extends Component {
         <div className="container mx-auto px-4 md:px-6">
           <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">About Us</h3>
           <p className="text-center max-w-3xl mx-auto">
-            We create modern, responsive web applications with simplicity and efficiency.
+            We are a dedicated team of developers and designers focused on creating
+            cutting-edge, modern, and responsive web applications that prioritize both
+            simplicity and efficiency. Our goal is to build intuitive, user-friendly
+            solutions that deliver exceptional performance across all devices and
+            platforms. We emphasize clean, maintainable code and seamless user
+            experiences, ensuring that each project not only meets but exceeds
+            expectations. Whether it's a small business website or a complex web
+            application, we take pride in crafting solutions that help our clients
+            succeed in the digital world with ease and reliability.
           </p>
         </div>
       </section>
