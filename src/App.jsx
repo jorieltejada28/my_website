@@ -47,8 +47,7 @@ class App extends Component {
                 <AboutSection />
                 <ContactSection />
                 <Footer />
-              </>
-            }
+              </>}
             />
           </Routes>
         </div>
@@ -138,18 +137,48 @@ class AboutSection extends Component {
     return (
       <section id="about" className="py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
-          <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">About Us</h3>
-          <p className="text-center max-w-3xl mx-auto">
-            We are a dedicated team of developers and designers focused on creating
-            cutting-edge, modern, and responsive web applications that prioritize both
-            simplicity and efficiency. Our goal is to build intuitive, user-friendly
-            solutions that deliver exceptional performance across all devices and
-            platforms. We emphasize clean, maintainable code and seamless user
-            experiences, ensuring that each project not only meets but exceeds
-            expectations. Whether it's a small business website or a complex web
-            application, we take pride in crafting solutions that help our clients
-            succeed in the digital world with ease and reliability.
-          </p>
+
+          <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">
+            About Us
+          </h3>
+
+          <div className="mb-6">
+            <p className="text-center max-w-3xl mx-auto">
+              We are a passionate and highly skilled team of developers and designers dedicated to crafting innovative,
+              modern, and fully responsive web applications. Our mission is to merge creativity with technology, delivering
+              solutions that are not only visually appealing but also highly functional, efficient, and user-friendly.
+            </p>
+          </div>
+
+          <div className="mb-6">
+            <p className="text-center max-w-3xl mx-auto">
+              With a deep understanding of the latest industry trends and best practices, we prioritize building
+              applications that offer seamless performance across all devices, whether it’s desktops, tablets, or mobile
+              phones. We believe that great design should go hand in hand with robust functionality, ensuring that users
+              can navigate effortlessly while experiencing smooth interactions and optimized performance.
+            </p>
+          </div>
+
+          <div className="mb-6">
+            <p className="text-center max-w-3xl mx-auto">
+              Our development process is rooted in writing clean, maintainable, and scalable code, allowing for easy
+              updates and long-term sustainability. We pay close attention to every detail, from the architecture and
+              backend logic to the frontend design and user interface. By leveraging modern frameworks, advanced programming
+              techniques, and cutting-edge technologies, we create digital solutions that not only meet but exceed
+              expectations.
+            </p>
+          </div>
+
+          <div>
+            <p className="text-center max-w-3xl mx-auto">
+              Understanding that every project is unique, we tailor our approach to suit the specific needs of each client.
+              Whether it’s a simple, elegant website for a small business, a sophisticated e-commerce platform, or a complex
+              enterprise-level web application, we ensure that our solutions align perfectly with business objectives. We work
+              closely with our clients to understand their vision, refine their ideas, and translate them into a digital reality
+              that drives engagement and success.
+            </p>
+          </div>
+
         </div>
       </section>
     );

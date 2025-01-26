@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FaFacebook, FaGoogle, FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LoadingScreen from "../components/LoadingScreen";
@@ -46,15 +47,56 @@ class SignIn extends Component {
             <h2 className="text-2xl font-bold text-center text-gray-900">Sign In</h2>
             <form onSubmit={this.handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label>
-                <input id="email" name="email" type="email" autoComplete="email" required value={this.state.email} onChange={this.handleChange} className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Email Address"
+                />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-                <input id="password" name="password" type="password" autoComplete="current-password" required value={this.state.password} onChange={this.handleChange} className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  placeholder="Password"
+                />
               </div>
+
+              {/* Social Login Icons */}
+              <div className="flex justify-center space-x-6">
+                <a href="#" className="text-blue-600 hover:text-blue-800 transition duration-300 text-2xl">
+                  <FaFacebook />
+                </a>
+                <a href="#" className="text-pink-500 hover:text-pink-700 transition duration-300 text-2xl">
+                  <FaInstagram />
+                </a>
+                <a href="#" className="text-red-500 hover:text-red-700 transition duration-300 text-2xl">
+                  <FaGoogle />
+                </a>
+                <a href="#" className="text-blue-700 hover:text-blue-900 transition duration-300 text-2xl">
+                  <FaLinkedin />
+                </a>
+                <a href="#" className="text-gray-900 hover:text-gray-700 transition duration-300 text-2xl">
+                  <FaGithub />
+                </a>
+              </div>
+
               <div>
-                <button type="submit" className="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <button
+                  type="submit"
+                  className="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
                   Sign In
                 </button>
               </div>
