@@ -7,6 +7,7 @@ import featureOneImage from "./images/featureone.png";
 import featureTwoImage from "./images/featuretwo.png";
 import featureThreeImage from "./images/featurethree.png";
 import SignIn from "./pages/SignIn";
+import Signup from "./pages/SignUp";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 // Base Component Class
@@ -37,17 +38,20 @@ class App extends Component {
         <div className="bg-gray-50 text-gray-800 min-h-screen font-sans">
           {/* Conditionally render Header and Footer */}
           <Routes>
-            <Route path="/sign-in" element={<SignIn />}
-            />
-            <Route path="/" element={
-              <>
-                <Header />
-                <HeroSection />
-                <FeaturesSection />
-                <AboutSection />
-                <ContactSection />
-                <Footer />
-              </>}
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<Signup />} />
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header />
+                  <HeroSection />
+                  <FeaturesSection />
+                  <AboutSection />
+                  <ContactSection />
+                  <Footer />
+                </>
+              }
             />
           </Routes>
         </div>

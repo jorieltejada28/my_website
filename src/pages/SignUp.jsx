@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LoadingScreen from "../components/LoadingScreen";
 
-class SignIn extends Component {
+class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +44,7 @@ class SignIn extends Component {
 
         <div className="flex items-center justify-center min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-2xl shadow-gray-900">
-            <h2 className="text-2xl font-bold text-center text-gray-900">Sign In</h2>
+            <h2 className="text-2xl font-bold text-center text-gray-900">Sign Up</h2>
             <form onSubmit={this.handleSubmit} className="space-y-6">
               <div>
                 <input
@@ -97,7 +97,7 @@ class SignIn extends Component {
                   type="submit"
                   className="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Sign In
+                  Sign Up
                 </button>
               </div>
             </form>
@@ -110,4 +110,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default SignUp;

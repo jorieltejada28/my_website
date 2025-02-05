@@ -51,7 +51,7 @@ class Header extends Component {
           {/* Right Buttons */}
           <div className="hidden md:flex space-x-4">
             <Link to="/sign-in" className="border border-indigo-600 text-sm md:text-base text-indigo-600 py-1 px-4 rounded-full shadow hover:bg-indigo-600 hover:text-white">Sign In</Link>
-            <a href="#" className="border border-indigo-600 text-sm md:text-base text-indigo-600 py-1 px-4 rounded-full shadow hover:bg-indigo-600 hover:text-white">Sign Up</a>
+            <Link to="/sign-up" className="border border-indigo-600 text-sm md:text-base text-indigo-600 py-1 px-4 rounded-full shadow hover:bg-indigo-600 hover:text-white">Sign Up</Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -69,7 +69,7 @@ class Header extends Component {
             <li><a href="#about" className="hover:text-indigo-600">About</a></li>
             <li><a href="#contact" className="hover:text-indigo-600">Contact</a></li>
             <li><Link to="/sign-in" className="border border-indigo-600 text-indigo-600 py-2 px-4 shadow hover:bg-indigo-600 hover:text-white block">Sign In</Link></li>
-            <li><a href="#" className="border border-indigo-600 text-indigo-600 py-2 px-4 shadow hover:bg-indigo-600 hover:text-white block">Sign Up</a></li>
+            <li><Link to="/sign-up" className="border border-indigo-600 text-indigo-600 py-2 px-4 shadow hover:bg-indigo-600 hover:text-white block">Sign Up</Link></li>
           </ul>
         </div>
       </header>
