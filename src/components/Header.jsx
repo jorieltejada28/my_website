@@ -35,16 +35,16 @@ class Header extends Component {
       <header className="bg-white shadow-md fixed top-0 w-full z-50 transition-colors duration-300">
         <div className="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           {/* Logo */}
-          <a href="#home" className="text-xl md:text-2xl font-bold text-indigo-600">
+          <a href="/my_website/#home" className="text-xl md:text-2xl font-bold text-indigo-600">
             My WebApp
           </a>
 
           {/* Center Navigation */}
           <nav className="hidden md:flex flex-grow justify-center">
             <ul className="flex flex-row space-x-6">
-              <li><a href="#features" className="text-sm md:text-base hover:text-indigo-600">Features</a></li>
-              <li><a href="#about" className="text-sm md:text-base hover:text-indigo-600">About</a></li>
-              <li><a href="#contact" className="text-sm md:text-base hover:text-indigo-600">Contact</a></li>
+              <li><a href="/my_website/#features" className="text-sm md:text-base hover:text-indigo-600">Features</a></li>
+              <li><a href="/my_website/#about" className="text-sm md:text-base hover:text-indigo-600">About</a></li>
+              <li><a href="/my_website/#contact" className="text-sm md:text-base hover:text-indigo-600">Contact</a></li>
             </ul>
           </nav>
 
