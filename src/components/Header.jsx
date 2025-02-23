@@ -30,21 +30,28 @@ class Header extends Component {
     this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
   };
 
+  smoothScroll = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   render() {
     return (
       <header className="bg-white shadow-md fixed top-0 w-full z-50 transition-colors duration-300">
         <div className="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
           {/* Logo */}
-          <a href="/my_website/#home" className="text-xl md:text-2xl font-bold text-indigo-600">
+          <button onClick={() => this.smoothScroll("home")} className="text-xl md:text-2xl font-bold text-indigo-600">
             My WebApp
-          </a>
+          </button>
 
           {/* Center Navigation */}
           <nav className="hidden md:flex flex-grow justify-center">
             <ul className="flex flex-row space-x-6">
-              <li><a href="/my_website/#features" className="text-sm md:text-base hover:text-indigo-600">Features</a></li>
-              <li><a href="/my_website/#about" className="text-sm md:text-base hover:text-indigo-600">About</a></li>
-              <li><a href="/my_website/#contact" className="text-sm md:text-base hover:text-indigo-600">Contact</a></li>
+              <li><button onClick={() => this.smoothScroll("features")} className="text-sm md:text-base hover:text-indigo-600">Features</button></li>
+              <li><button onClick={() => this.smoothScroll("about")} className="text-sm md:text-base hover:text-indigo-600">About</button></li>
+              <li><button onClick={() => this.smoothScroll("contact")} className="text-sm md:text-base hover:text-indigo-600">Contact</button></li>
             </ul>
           </nav>
 
@@ -65,9 +72,9 @@ class Header extends Component {
         {/* Mobile Dropdown Menu */}
         <div className={`md:hidden bg-white shadow-md text-center transition-all duration-300 ease-in-out ${this.state.isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}>
           <ul className="flex flex-col space-y-4 px-4 py-4 text-lg font-bold">
-            <li><a href="#features" className="hover:text-indigo-600">Features</a></li>
-            <li><a href="#about" className="hover:text-indigo-600">About</a></li>
-            <li><a href="#contact" className="hover:text-indigo-600">Contact</a></li>
+            <li><button onClick={() => this.smoothScroll("features")} className="hover:text-indigo-600">Features</button></li>
+            <li><button onClick={() => this.smoothScroll("about")} className="hover:text-indigo-600">About</button></li>
+            <li><button onClick={() => this.smoothScroll("contact")} className="hover:text-indigo-600">Contact</button></li>
             <li><Link to="/sign-in" className="border border-indigo-600 text-indigo-600 py-2 px-4 shadow hover:bg-indigo-600 hover:text-white block">Sign In</Link></li>
             <li><Link to="/sign-up" className="border border-indigo-600 text-indigo-600 py-2 px-4 shadow hover:bg-indigo-600 hover:text-white block">Sign Up</Link></li>
           </ul>
