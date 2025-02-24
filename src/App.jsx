@@ -6,6 +6,7 @@ import landingPageImage from "./images/rb_1816.png";
 import featureOneImage from "./images/featureone.png";
 import featureTwoImage from "./images/featuretwo.png";
 import featureThreeImage from "./images/featurethree.png";
+import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
 import Signup from "./pages/SignUp";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
@@ -40,6 +41,7 @@ class App extends Component {
           <Routes>
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<Signup />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route
               path="/"
               element={
@@ -88,7 +90,7 @@ class HeroSection extends Component {
           <div className="flex justify-center">
             <a
               href="#"
-              className="bg-indigo-600 text-white font-semibold py-2 px-4 md:py-2 md:px-5 rounded-full shadow hover:bg-indigo-700"
+              className="bg-blue-700 text-white font-semibold py-2 px-4 md:py-2 md:px-5 rounded-full shadow hover:bg-blue-800"
             >
               Get Started
             </a>
@@ -200,7 +202,7 @@ class ContactSection extends Component {
             <input type="text" placeholder="Name" className="w-full px-3 py-2 border rounded-md" />
             <input type="email" placeholder="Email" className="w-full px-3 py-2 border rounded-md" />
             <textarea placeholder="Message" className="w-full px-3 py-2 border rounded-md" rows="4"></textarea>
-            <button type="submit" className="bg-indigo-600 text-white py-2 px-4 rounded-full">Send Message</button>
+            <button type="submit" className="bg-blue-700 text-white py-2 px-4 md:py-2 md:px-5 rounded-full shadow hover:bg-blue-800">Send Message</button>
           </form>
         </div>
       </section>
