@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FaFacebook, FaGoogle, FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LoadingScreen from "../components/LoadingScreen";
@@ -35,11 +36,22 @@ class SignIn extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Email:", this.state.email);
-    console.log("Password:", this.state.password);
 
-    // Redirect to dashboard after sign-in
-    this.props.navigate("/dashboard");
+    const { email, password } = this.state;
+
+    if (email === "admin@gmail.com" && password === "admin") {
+      this.props.navigate("/dashboard"); // Redirect to dashboard immediately
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Credentials",
+        text: "Please enter a valid email and password.",
+        confirmButtonColor: "#1D4ED8", // Blue-700
+        customClass: {
+          confirmButton: "hover:bg-blue-800", // Hover effect
+        },
+      });
+    }
   };
 
   render() {
@@ -117,4 +129,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignInWrapper; //export default SignIn;
+export default SignInWrapper;
