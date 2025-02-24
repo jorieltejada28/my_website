@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  FaRegFileAlt, FaStar, FaPaperPlane, FaTrash, FaShieldAlt, FaChevronRight, FaPlus, FaInbox
-} from "react-icons/fa";
+import { FaRegFileAlt, FaStar, FaPaperPlane, FaTrash, FaShieldAlt, FaChevronRight, FaPlus, FaInbox } from "react-icons/fa";
 import { MdWork, MdOutlineAccountBalance, MdWorkOutline, MdMarkEmailRead, MdMessage } from "react-icons/md";
 import { BsChatDots } from "react-icons/bs";
+import profilePic from "../pictures/joriel.jpg";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(() => JSON.parse(localStorage.getItem("sidebarOpen")) ?? true);
@@ -36,7 +35,7 @@ const Sidebar = () => {
 
       {/* Sidebar Container */}
       <div
-        className={`fixed md:relative top-0 left-0 h-screen bg-white text-gray-900 shadow-md overflow-y-auto custom-scrollbar
+        className={`fixed md:relative top-0 left-0 h-screen bg-white text-gray-900 shadow-lg shadow-gray-400/50 overflow-y-auto custom-scrollbar
         transition-all duration-300 ease-in-out z-40 
         ${isMobile ? (isOpen ? "translate-x-0 w-64" : "-translate-x-full w-64") : (isOpen ? "w-64" : "w-16")}`}
       >
@@ -51,7 +50,7 @@ const Sidebar = () => {
 
         {/* User Info */}
         <div className="flex items-center space-x-3 p-3 transition-opacity duration-300 ease-in-out">
-          <img src="" alt="Profile" className="rounded-full w-10 h-10" />
+          <img src={profilePic} alt="Profile" className="rounded-full w-10 h-10" />
           {isOpen && <span className="font-semibold">Admin Admin</span>}
         </div>
 
