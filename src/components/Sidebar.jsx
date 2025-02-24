@@ -97,7 +97,7 @@ const Sidebar = () => {
 
 const SidebarItem = ({ icon: Icon, text, badge, status, isOpen }) => {
   return (
-    <div className="flex items-center justify-between px-3 py-2 hover:bg-gray-100 cursor-pointer rounded-lg transition-all duration-300 ease-in-out">
+    <div className="flex items-center justify-between px-6 py-2 hover:bg-gray-300 cursor-pointer rounded-lg transition-all duration-300 ease-in-out">
       <div className="flex items-center space-x-3">
         <Icon className="text-lg text-gray-600 transition-all duration-300 ease-in-out" />
         {isOpen && <span className="text-sm font-medium transition-opacity duration-300 ease-in-out">{text}</span>}
