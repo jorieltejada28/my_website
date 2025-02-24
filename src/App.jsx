@@ -199,9 +199,9 @@ class ContactSection extends Component {
         <div className="container mx-auto px-4 md:px-6">
           <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">Contact Us</h3>
           <form className="max-w-3xl mx-auto space-y-4">
-            <input type="text" placeholder="Name" className="w-full px-3 py-2 border rounded-md" />
-            <input type="email" placeholder="Email" className="w-full px-3 py-2 border rounded-md" />
-            <textarea placeholder="Message" className="w-full px-3 py-2 border rounded-md" rows="4"></textarea>
+            <input type="text" placeholder="Name" className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+            <input type="email" placeholder="Email" className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+            <textarea placeholder="Message" className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" rows="4"></textarea>
             <button type="submit" className="bg-blue-700 text-white py-2 px-4 md:py-2 md:px-5 rounded-full shadow hover:bg-blue-800">Send Message</button>
           </form>
         </div>

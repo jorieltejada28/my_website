@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import { FaFacebook, FaGoogle, FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LoadingScreen from "../components/LoadingScreen";
+
+function SignInWrapper() {
+  const navigate = useNavigate();
+  return <SignIn navigate={navigate} />;
+}
 
 class SignIn extends Component {
   constructor(props) {
@@ -31,6 +37,9 @@ class SignIn extends Component {
     event.preventDefault();
     console.log("Email:", this.state.email);
     console.log("Password:", this.state.password);
+
+    // Redirect to dashboard after sign-in
+    this.props.navigate("/dashboard");
   };
 
   render() {
@@ -52,7 +61,6 @@ class SignIn extends Component {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  required
                   value={this.state.email}
                   onChange={this.handleChange}
                   className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -65,7 +73,6 @@ class SignIn extends Component {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  required
                   value={this.state.password}
                   onChange={this.handleChange}
                   className="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-indigo-500 sm:text-sm"
@@ -110,4 +117,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default SignInWrapper; //export default SignIn;
