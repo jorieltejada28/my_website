@@ -3,17 +3,16 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import LoadingScreen from "../components/LoadingScreen";
 import { FaUsers, FaChartBar, FaMoneyBillWave, FaTasks } from "react-icons/fa";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    // Simulate loading delay (2 seconds)
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -21,59 +20,100 @@ const Dashboard = () => {
     return <LoadingScreen />;
   }
 
+  // Dummy Data for Leads Chart
+  const leadsData = [
+    { name: "Jan", leads: 50000 },
+    { name: "Feb", leads: 60000 },
+    { name: "Mar", leads: 55000 },
+    { name: "Apr", leads: 70000 },
+    { name: "May", leads: 65000 },
+    { name: "Jun", leads: 80000 },
+  ];
+
+  // Dummy Data for Sales Funnel
+  const salesFunnel = [
+    { stage: "Visitors", count: 256200 },
+    { stage: "Product Views", count: 198400 },
+    { stage: "Add to Cart", count: 139200 },
+    { stage: "Checkout", count: 9400 },
+    { stage: "Complete Order", count: 5900 },
+  ];
+
   return (
     <div className="flex">
-      {/* Sidebar */}
       <Sidebar />
-
-      {/* Main Content */}
       <div className="flex-1 min-h-screen bg-gray-100">
-        {/* Navbar */}
         <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-        {/* Dashboard Content */}
-        <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Card 1 */}
-          <div className="flex items-center p-4 bg-white shadow-md rounded-lg border-t-4 border-blue-500 cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-gray-200">
-            <div className="p-3 bg-gray-200 rounded-full">
-              <FaUsers className="text-xl text-gray-600" />
-            </div>
-            <div className="ml-4">
-              <h2 className="text-lg font-semibold">Total Users</h2>
-              <p className="text-gray-700 text-xl font-bold">1,250</p>
-            </div>
+        {/* Main Grid */}
+        <div className="p-6 space-y-6">
+          {/* Cards Section */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[{
+              title: "Total Users",
+              value: "1,250",
+              icon: <FaUsers className="text-4xl text-blue-700" />,
+              color: "border-blue-700"
+            }, {
+              title: "Revenue",
+              value: "₱52,340",
+              icon: <FaMoneyBillWave className="text-4xl text-blue-700" />,
+              color: "border-blue-700"
+            }, {
+              title: "Tasks Completed",
+              value: "320",
+              icon: <FaTasks className="text-4xl text-blue-700" />,
+              color: "border-blue-700"
+            }, {
+              title: "Analytics",
+              value: "87%",
+              icon: <FaChartBar className="text-4xl text-blue-700" />,
+              color: "border-blue-700"
+            }].map((card, index) => (
+              <div
+                key={index}
+                className={`flex flex-col items-center p-6 bg-white shadow-lg rounded-lg border-t-4 ${card.color} 
+                  cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-xl`}
+              >
+                <div className="mb-4">{card.icon}</div>
+                <h2 className="text-lg font-semibold">{card.title}</h2>
+                <p className="text-2xl font-bold text-gray-700">{card.value}</p>
+              </div>
+            ))}
           </div>
+          
+          {/* Leads Chart & Sales Funnel Side by Side */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Leads Chart */}
+            <div className="bg-white p-6 shadow-md rounded-lg">
+              <h2 className="text-xl font-semibold mb-4">Leads Overview</h2>
+              <ResponsiveContainer width="100%" height={250}>
+                <LineChart data={leadsData}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="leads" stroke="#1E40AF" strokeWidth={3} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
 
-          {/* Card 2 */}
-          <div className="flex items-center p-4 bg-white shadow-md rounded-lg border-t-4 border-green-500 cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-gray-200">
-            <div className="p-3 bg-gray-200 rounded-full">
-              <FaMoneyBillWave className="text-xl text-gray-600" />
-            </div>
-            <div className="ml-4">
-              <h2 className="text-lg font-semibold">Revenue</h2>
-              <p className="text-gray-700 text-xl font-bold">₱52,340</p>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="flex items-center p-4 bg-white shadow-md rounded-lg border-t-4 border-yellow-500 cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-gray-200">
-            <div className="p-3 bg-gray-200 rounded-full">
-              <FaTasks className="text-xl text-gray-600" />
-            </div>
-            <div className="ml-4">
-              <h2 className="text-lg font-semibold">Tasks Completed</h2>
-              <p className="text-gray-700 text-xl font-bold">320</p>
-            </div>
-          </div>
-
-          {/* Card 4 */}
-          <div className="flex items-center p-4 bg-white shadow-md rounded-lg border-t-4 border-red-500 cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-gray-200">
-            <div className="p-3 bg-gray-200 rounded-full">
-              <FaChartBar className="text-xl text-gray-600" />
-            </div>
-            <div className="ml-4">
-              <h2 className="text-lg font-semibold">Analytics</h2>
-              <p className="text-gray-700 text-xl font-bold">87%</p>
+            {/* Sales Funnel */}
+            <div className="bg-white p-6 shadow-md rounded-lg">
+              <h2 className="text-xl font-semibold mb-4">Sales Funnel</h2>
+              <div className="space-y-3">
+                {salesFunnel.map((step, index) => (
+                  <div key={index}>
+                    <p className="text-sm font-medium">{step.stage}</p>
+                    <div className="w-full bg-gray-200 h-4 rounded-md overflow-hidden">
+                      <div
+                        className="h-full bg-blue-700"
+                        style={{ width: `${(step.count / 256200) * 100}%` }}
+                      ></div>
+                    </div>
+                    <p className="text-xs text-gray-500">{step.count.toLocaleString()}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
