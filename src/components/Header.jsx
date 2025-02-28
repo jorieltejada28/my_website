@@ -4,11 +4,19 @@ import { useNavigate, useLocation } from "react-router-dom";
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = { isOpen: false };
+    this.state = { isOpen: localStorage.getItem("menuOpen") === "true" };
   }
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
+
+    // ✅ Scroll to last visited section on refresh
+    const lastSection = localStorage.getItem("lastSection");
+    if (lastSection && document.getElementById(lastSection)) {
+      setTimeout(() => {
+        document.getElementById(lastSection)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
   }
 
   componentWillUnmount() {
@@ -25,18 +33,31 @@ class Header extends Component {
   };
 
   toggleMenu = () => {
-    this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
+    this.setState(
+      (prevState) => {
+        const newState = !prevState.isOpen;
+        localStorage.setItem("menuOpen", newState); // ✅ Store menu state in localStorage
+        return { isOpen: newState };
+      }
+    );
   };
 
   closeMenu = () => {
     this.setState({ isOpen: false });
+    localStorage.setItem("menuOpen", "false"); // ✅ Close menu and update localStorage
   };
 
   scrollToSection = (id) => {
     const { navigate, location } = this.props;
 
-    if (location.pathname !== "/") {
-      navigate("/");
+    // ✅ Store last clicked section
+    localStorage.setItem("lastSection", id);
+
+    // ✅ Detect base path dynamically
+    const basePath = window.location.pathname.includes("/") ? "/" : "";
+
+    if (location.pathname !== `${basePath}/`) {
+      navigate(`${basePath}/`);
       setTimeout(() => {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 100);
@@ -69,8 +90,8 @@ class Header extends Component {
 
           {/* Right Buttons */}
           <div className="hidden md:flex space-x-4">
-            <button onClick={() => this.props.navigate("/sign-in")} className="border border-blue-700 text-sm md:text-base text-blue-700 py-1 px-4 rounded-full shadow hover:bg-blue-700 hover:text-white">Sign In</button>
-            <button onClick={() => this.props.navigate("/sign-up")} className="border border-blue-700 text-sm md:text-base text-blue-700 py-1 px-4 rounded-full shadow hover:bg-blue-700 hover:text-white">Sign Up</button>
+            <button onClick={() => this.props.navigate("/sign-in")} className="border border-blue-700 text-sm md:text-base text-blue-700 py-1 px-4 shadow hover:bg-blue-700 hover:text-white rounded-full">Sign In</button>
+            <button onClick={() => this.props.navigate("/sign-up")} className="border border-blue-700 text-sm md:text-base text-blue-700 py-1 px-4 shadow hover:bg-blue-700 hover:text-white rounded-full">Sign Up</button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -82,7 +103,7 @@ class Header extends Component {
         </div>
 
         {/* Mobile Dropdown Menu */}
-        <div className={`md:hidden bg-white shadow-md text-center transition-transform duration-300 ease-in-out ${this.state.isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}`}>
+        <div className={`md:hidden bg-white shadow-md text-center transition-all duration-300 ease-in-out ${this.state.isOpen ? "block" : "hidden"}`}>
           <ul className="flex flex-col space-y-4 px-4 py-4 text-lg font-bold">
             {["features", "about", "contact"].map((section) => (
               <li key={section}>
@@ -92,10 +113,14 @@ class Header extends Component {
               </li>
             ))}
             <li>
-              <button onClick={() => this.props.navigate("/sign-in")} className="border border-blue-700 text-blue-700 py-2 px-4 shadow hover:bg-blue-700 hover:text-white block">Sign In</button>
+              <button onClick={() => (this.closeMenu(), this.props.navigate("/sign-in"))} className="w-full border border-blue-700 text-blue-700 py-2 px-4 shadow hover:bg-blue-700 hover:text-white">
+                Sign In
+              </button>
             </li>
             <li>
-              <button onClick={() => this.props.navigate("/sign-up")} className="border border-blue-700 text-blue-700 py-2 px-4 shadow hover:bg-blue-700 hover:text-white block">Sign Up</button>
+              <button onClick={() => (this.closeMenu(), this.props.navigate("/sign-up"))} className="w-full border border-blue-700 text-blue-700 py-2 px-4 shadow hover:bg-blue-700 hover:text-white">
+                Sign Up
+              </button>
             </li>
           </ul>
         </div>
