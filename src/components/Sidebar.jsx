@@ -11,16 +11,12 @@ const Sidebar = () => {
 
   // Update localStorage when the component unmounts
   useEffect(() => {
-    return () => {
-      localStorage.setItem("sidebarOpen", JSON.stringify(isOpen));
-    };
+    localStorage.setItem("sidebarOpen", JSON.stringify(isOpen));
   }, [isOpen]);
 
   // Debounce resize event handler
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
 
     const debounceResize = () => {
       clearTimeout(window.resizeTimer);
@@ -32,21 +28,24 @@ const Sidebar = () => {
   }, []);
 
   // Memoize sidebar items
-  const sidebarItems = useMemo(() => [
-    { icon: FaInbox, text: "Inbox", badge: "99" },
-    { icon: FaRegFileAlt, text: "Draft" },
-    { icon: FaStar, text: "Starred" },
-    { icon: FaPaperPlane, text: "Sent" },
-    { icon: FaTrash, text: "Trash" },
-    { icon: FaShieldAlt, text: "Spam" },
-    { icon: MdWork, text: "My Works", badge: "9" },
-    { icon: MdOutlineAccountBalance, text: "Accountant", badge: "43" },
-    { icon: MdWorkOutline, text: "Works", badge: "78" },
-    { icon: MdMarkEmailRead, text: "Marketing", badge: "253" },
-    { icon: FaPlus, text: "Start New Chat" },
-    { icon: BsChatDots, text: "Kierra Gouse", status: "online" },
-    { icon: BsChatDots, text: "Jordyn Vaccaro", badge: "3" },
-  ], []);
+  const sidebarItems = useMemo(
+    () => [
+      { icon: FaInbox, text: "Inbox", badge: "99" },
+      { icon: FaRegFileAlt, text: "Draft" },
+      { icon: FaStar, text: "Starred" },
+      { icon: FaPaperPlane, text: "Sent" },
+      { icon: FaTrash, text: "Trash" },
+      { icon: FaShieldAlt, text: "Spam" },
+      { icon: MdWork, text: "My Works", badge: "9" },
+      { icon: MdOutlineAccountBalance, text: "Accountant", badge: "43" },
+      { icon: MdWorkOutline, text: "Works", badge: "78" },
+      { icon: MdMarkEmailRead, text: "Marketing", badge: "253" },
+      { icon: FaPlus, text: "Start New Chat" },
+      { icon: BsChatDots, text: "Kierra Gouse", status: "online" },
+      { icon: BsChatDots, text: "Jordyn Vaccaro", badge: "3" },
+    ],
+    []
+  );
 
   return (
     <>
