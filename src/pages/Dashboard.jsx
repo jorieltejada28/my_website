@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import LoadingScreen from "../components/LoadingScreen";
 import { FaUsers, FaChartBar, FaMoneyBillWave, FaTasks } from "react-icons/fa";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, CartesianGrid, Legend } from "recharts";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,6 @@ const Dashboard = () => {
     return <LoadingScreen />;
   }
 
-  // Dummy Data for Leads Chart
   const leadsData = [
     { name: "Jan", leads: 50000 },
     { name: "Feb", leads: 60000 },
@@ -30,7 +29,6 @@ const Dashboard = () => {
     { name: "Jun", leads: 80000 },
   ];
 
-  // Dummy Data for Sales Funnel
   const salesFunnel = [
     { stage: "Visitors", count: 256200 },
     { stage: "Product Views", count: 198400 },
@@ -39,15 +37,22 @@ const Dashboard = () => {
     { stage: "Complete Order", count: 5900 },
   ];
 
+  const salesData = [
+    { month: "Jan", sales: 40000, profit: 10000 },
+    { month: "Feb", sales: 45000, profit: 12000 },
+    { month: "Mar", sales: 48000, profit: 15000 },
+    { month: "Apr", sales: 52000, profit: 18000 },
+    { month: "May", sales: 50000, profit: 16000 },
+    { month: "Jun", sales: 55000, profit: 20000 },
+  ];
+
   return (
     <div className="flex">
       <Sidebar />
       <div className="flex-1 min-h-screen bg-gray-100">
         <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
-        {/* Main Grid */}
         <div className="p-6 space-y-6">
-          {/* Cards Section */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[{
               title: "Total Users",
@@ -70,21 +75,15 @@ const Dashboard = () => {
               icon: <FaChartBar className="text-4xl text-blue-700" />,
               color: "border-blue-700"
             }].map((card, index) => (
-              <div
-                key={index}
-                className={`flex flex-col items-center p-6 bg-white shadow-lg rounded-lg border-t-4 ${card.color} 
-                  cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-xl`}
-              >
+              <div key={index} className={`flex flex-col items-center p-6 bg-white shadow-lg rounded-lg border-t-4 ${card.color} cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-xl`}>
                 <div className="mb-4">{card.icon}</div>
                 <h2 className="text-lg font-semibold">{card.title}</h2>
                 <p className="text-2xl font-bold text-gray-700">{card.value}</p>
               </div>
             ))}
           </div>
-          
-          {/* Leads Chart & Sales Funnel Side by Side */}
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Leads Chart */}
             <div className="bg-white p-6 shadow-md rounded-lg">
               <h2 className="text-xl font-semibold mb-4">Leads Overview</h2>
               <ResponsiveContainer width="100%" height={250}>
@@ -97,7 +96,6 @@ const Dashboard = () => {
               </ResponsiveContainer>
             </div>
 
-            {/* Sales Funnel */}
             <div className="bg-white p-6 shadow-md rounded-lg">
               <h2 className="text-xl font-semibold mb-4">Sales Funnel</h2>
               <div className="space-y-3">
@@ -105,16 +103,28 @@ const Dashboard = () => {
                   <div key={index}>
                     <p className="text-sm font-medium">{step.stage}</p>
                     <div className="w-full bg-gray-200 h-4 rounded-md overflow-hidden">
-                      <div
-                        className="h-full bg-blue-700"
-                        style={{ width: `${(step.count / 256200) * 100}%` }}
-                      ></div>
+                      <div className="h-full bg-blue-700" style={{ width: `${(step.count / 256200) * 100}%` }}></div>
                     </div>
                     <p className="text-xs text-gray-500">{step.count.toLocaleString()}</p>
                   </div>
                 ))}
               </div>
             </div>
+          </div>
+
+          <div className="bg-white p-6 shadow-md rounded-lg">
+            <h2 className="text-xl font-semibold mb-4">Monthly Sales & Profit</h2>
+            <ResponsiveContainer width="100%" height={250}>
+              <BarChart data={salesData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="month" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="sales" fill="#1E40AF" />
+                <Bar dataKey="profit" fill="#34D399" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
