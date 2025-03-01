@@ -22,6 +22,11 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchData();
+
+    // Prevent double-tap zoom
+    document.addEventListener("dblclick", (e) => {
+      e.preventDefault();
+    }, { passive: false });
   }
 
   async fetchData() {

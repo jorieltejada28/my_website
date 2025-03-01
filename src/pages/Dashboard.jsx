@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import LoadingScreen from "../components/LoadingScreen";
 import { FaUsers, FaChartBar, FaMoneyBillWave, FaTasks } from "react-icons/fa";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Bar, CartesianGrid, Legend } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -35,15 +35,6 @@ const Dashboard = () => {
     { stage: "Add to Cart", count: 139200 },
     { stage: "Checkout", count: 9400 },
     { stage: "Complete Order", count: 5900 },
-  ];
-
-  const salesData = [
-    { month: "Jan", sales: 40000, profit: 10000 },
-    { month: "Feb", sales: 45000, profit: 12000 },
-    { month: "Mar", sales: 48000, profit: 15000 },
-    { month: "Apr", sales: 52000, profit: 18000 },
-    { month: "May", sales: 50000, profit: 16000 },
-    { month: "Jun", sales: 55000, profit: 20000 },
   ];
 
   return (
@@ -110,21 +101,6 @@ const Dashboard = () => {
                 ))}
               </div>
             </div>
-          </div>
-
-          <div className="bg-white p-6 shadow-md rounded-lg">
-            <h2 className="text-xl font-semibold mb-4">Monthly Sales & Profit</h2>
-            <ResponsiveContainer width="100%" height={250}>
-              <BarChart data={salesData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="sales" fill="#1E40AF" />
-                <Bar dataKey="profit" fill="#34D399" />
-              </BarChart>
-            </ResponsiveContainer>
           </div>
         </div>
       </div>
